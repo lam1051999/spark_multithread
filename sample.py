@@ -35,6 +35,6 @@ if __name__ == "__main__":
     data = [[item] for item in range(10000)]
     rdd = spark.sparkContext.parallelize(data)
     df = rdd.toDF(["id"])
-    df = df.repartition(3)
+    df = df.repartition(3) # Number of parallel tasks, each task will generate a pool of 1000 threads => 3000 async requests
     df = df.rdd.mapPartitions(process_data).toDF(["original_id", "new_id"])
     df.show()
