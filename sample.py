@@ -5,7 +5,7 @@ from pyspark.sql import SparkSession
 
 # Adjusted function with semaphore for rate limiting
 async def async_http_call(session, semaphore, row):
-    time.sleep(0.1) # Simulate a HTTP call
+    time.sleep(0.001) # Simulate a HTTP call
     return [row.id, row.id * 2] # This double the value generated
 
 async def async_process(list_row, req_per_second):
